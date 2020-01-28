@@ -6,17 +6,34 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-<h1>Sign Up</h1>
+    <header>
+        <h1>Sign Up</h1>
+        <ul>
+            <li>
+                <a href="/signup">Sign Up HERE</a>
+            </li>
+            <li>
+                <a href="/login">Login Here</a>
+            </li>
+        </ul>
 
-<h2>Make new users here</h2>
-<form action="/signup" method="POST">
-    UserName: <input type="text" name="username">
-    Password: <input type="password" name="password">
-    First Name: <input type="text" name="firstName">
-    Last Name: <input type="text" name="lastName">
-    Date of Birth: <input type="date" name="dateOfBirth">
-    Bio: <input type="text" name="bio">
-    <button type="submit">Submit</button>
-</form>
+    </header>
+    <main>
+        <h2>Make new users here</h2>
+        <form action="/signup" method="POST">
+            UserName: <input type="text" name="username">
+            Password: <input type="password" name="password">
+            First Name: <input type="text" name="firstName">
+            Last Name: <input type="text" name="lastName">
+            Date of Birth: <input type="date" name="dateOfBirth">
+            Bio: <textarea name="bio" rows="10" cols="30"></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </main>
+    <footer>
+        <ul class="copyright">
+            <li>&copy; Phong Doan. All rights reserved.</li>
+        </ul>
+    </footer>
 </body>
 </html>

@@ -6,12 +6,29 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-<h1>Login please</h1>
+    <header>
+        <h1>Login please</h1>
+        <ul>
+            <li>
+                <a href="/signup">Sign Up HERE</a>
+            </li>
+            <li>
+                <a href="/login">Login Here</a>
+            </li>
+        </ul>
 
-<form action="/login" method="post">
-    Name: <input type="text" name="username">
-    Password: <input type="password" name="password">
-    <button type="submit">Submit</button>
-</form>
+    </header>
+    <main>
+        <form action="/login" method="post">
+            Username: <input type="text" name="username">
+            Password: <input type="password" name="password">
+            <button type="submit">Submit</button>
+        </form>
+    </main>
+    <footer>
+        <ul class="copyright">
+            <li>&copy; Phong Doan. All rights reserved.</li>
+        </ul>
+    </footer>
 </body>
 </html>
