@@ -41,12 +41,10 @@ public class ApplicationUserController {
         return "login";
     }
 
-    @GetMapping("/users/{id}")
-    public String getHome(@PathVariable long id, Principal p, Model m) {
+    @GetMapping("/users")
+    public String getHome(Principal p, Model m) {
         if (p != null) {
             m.addAttribute("username", p.getName());
-            ApplicationUser user = applicationUserRepository.getOne(id);
-            m.addAttribute("user", user);
         }
         return "users";
     }
