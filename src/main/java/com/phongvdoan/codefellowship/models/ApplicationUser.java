@@ -46,6 +46,22 @@ public class ApplicationUser implements UserDetails {
         return this.password;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getDateofBirth() {
+        return dateofBirth;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
     @Override
     public String getUsername() {
         return this.username;
