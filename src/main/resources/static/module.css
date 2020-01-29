@@ -1,0 +1,22 @@
+h1 {
+    font-size: 2em;
+}
+
+li {
+    display: inline;
+    margin: 1em;
+}
+
+main {
+    height: 110vh;
+}
+
+main > p {
+    margin: 1em;
+}
+
+main > form {
+    width: 10em;
+    border: 1em solid whitesmoke;
+    margin: 5em auto;
+}
