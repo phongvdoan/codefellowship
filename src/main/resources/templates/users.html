@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>User Profile</title>
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
 <header>
-    <h1>Welcome. This is [[${username}]]'s profile</h1>
+    <h1>Welcome, [[${principle}]]. This is [[${username}]]'s profile</h1>
     <ul>
         <li>
             <a href="/signup">Sign Up HERE</a>
@@ -22,7 +22,10 @@
 
 </header>
 <main>
-    <p>Place Holder for user info</p>
+    <h2>Name: [[${firstName}]]</h2>
+    <p>Last Name: [[${lastName}]]</p>
+    <p>Date of Birth: [[${dateOfBirth}]]</p>
+    <p>Bio: [[${bio}]]</p>
 </main>
 <footer>
     <ul class="copyright">

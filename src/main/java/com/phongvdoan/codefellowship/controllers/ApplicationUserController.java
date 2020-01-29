@@ -41,11 +41,17 @@ public class ApplicationUserController {
         return "login";
     }
 
-    @GetMapping("/users")
-    public String getHome(Principal p, Model m) {
+    @GetMapping("/users/{id}")
+    public String getHome(@PathVariable long id, Principal p, Model m) {
         if (p != null) {
-            m.addAttribute("username", p.getName());
+            m.addAttribute("principle", p.getName());
         }
+        ApplicationUser applicationUser = applicationUserRepository.findById(id).get();
+        m.addAttribute("username", applicationUser.getUsername());
+        m.addAttribute("firstName", applicationUser.getFirstName());
+        m.addAttribute("lastName", applicationUser.getLastName());
+        m.addAttribute("dateOfBirth", applicationUser.getDateofBirth());
+        m.addAttribute("bio", applicationUser.getBio());
         return "users";
     }
 }
