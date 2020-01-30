@@ -20,3 +20,25 @@ main > form {
     border: 1em solid whitesmoke;
     margin: 5em auto;
 }
+
+#userinfo {
+    text-align: left;
+    width: 15em;
+    border: .5em solid gray;
+    margin: 5em auto;
+}
+main > div > div {
+    float: left;
+    text-align: left;
+    width: 15em;
+    border: .5em solid gray;
+    margin: 5em auto;
+}
+
+main > div > p {
+    margin-bottom: .1em;
+}
+
+footer{
+    float: right;
+}

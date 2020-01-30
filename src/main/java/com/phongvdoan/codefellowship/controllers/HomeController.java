@@ -12,7 +12,7 @@ public class HomeController {
     @GetMapping("/")
     public String getHome(Principal p, Model m) {
         if (p != null) {
-            m.addAttribute("username", p.getName());
+            m.addAttribute("principle",p.getName());
         }
         return "home";
     }

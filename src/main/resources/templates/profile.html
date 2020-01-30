@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>[[${principle}]]'s Profile</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header>
+    <h1>Welcome, [[${principle}]].</h1>
+    <ul>
+        <li>
+            <a href="/signup">Sign Up HERE</a>
+        </li>
+        <li>
+            <a href="/login">Login Here</a>
+        </li>
+        <li>
+            <a href="/myprofile">Your Profile</a>
+        </li>
+        <li>
+            <a href="/logout">Logout Here</a>
+        </li>
+    </ul>
+
+</header>
+<main>
+    <div id="userinfo">
+        <p>Name: [[${firstName}]]</p>
+        <p>Last Name: [[${lastName}]]</p>
+        <p>Date of Birth: [[${dateOfBirth}]]</p>
+        <p>Bio: [[${bio}]]</p>
+    </div>
+
+    <h2>Add new post</h2>
+    <form action="/post" method="POST">
+        Message: <input type="text" name="message">
+        Body: <textarea name="body"></textarea>
+        <input type="hidden" name="id" th:value="${id}">
+        <button type="submit">Submit</button>
+    </form>
+<div>
+    <div th:each="post : ${user.posts}">
+        <p>Message: <span th:text="${post.message}"></span></p>
+        <p>Created At: <span th:text="${post.createdAt}"></span></p>
+        <p>By: [[${firstName}]]</p>
+        <p>Body: <span th:text="${post.body}"></span></p>
+
+    </div>
+</div>
+
+</main>
+<footer>
+    <ul class="copyright">
+        <li>&copy; Phong Doan. All rights reserved.</li>
+    </ul>
+</footer>
+</body>
+</html>
