@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Users</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header th:insert="~{fragments/header :: header}">
+</header>
+<main>
+    <div th:each="user : ${users}">
+        <img src="/images/default_pic.jpeg" alt="Profile Picture">
+        <p>Name:          [[${user.firstName}]]</p>
+        <p>Last Name:     [[${user.lastName}]]</p>
+        <p>Date of Birth: [[${user.dateOfBirth}]]</p>
+        <p>Bio:           [[${user.bio}]]</p>
+        <form action="/users/follow" method="post">
+            <input type="checkbox" name="following">
+            <input type="hidden" name="id" th:value="${user.id}">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</main>
+<footer th:insert="~{fragments/footer :: footer}">
+</footer>
+</body>
+</html>

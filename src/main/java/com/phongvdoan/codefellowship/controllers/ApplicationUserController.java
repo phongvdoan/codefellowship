@@ -17,6 +17,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class ApplicationUserController {
@@ -51,7 +52,7 @@ public class ApplicationUserController {
     }
 
     @GetMapping("/users/{id}")
-    public String getHome(@PathVariable long id, Principal p, Model m) {
+    public String getUser(@PathVariable long id, Principal p, Model m) {
         if (p != null) {
             m.addAttribute("principle",p.getName());
         } else if(p == null){
@@ -65,6 +66,18 @@ public class ApplicationUserController {
         m.addAttribute("bio", applicationUser.getBio());
 
         return "users";
+    }
+
+    @GetMapping("/users")
+    public String getAllUsers(Principal p, Model m) {
+        if (p != null) {
+            m.addAttribute("principle",p.getName());
+        } else if(p == null){
+            m.addAttribute("principle","User");
+        }
+        List<ApplicationUser> applicationUser = applicationUserRepository.findAll();
+        m.addAttribute("users", applicationUser);
+        return "allusers";
     }
 
     @GetMapping("/myprofile")
@@ -83,5 +96,12 @@ public class ApplicationUserController {
         m.addAttribute("id", applicationUser.id);
         m.addAttribute("user", applicationUser);
         return "profile";
+    }
+
+    @PostMapping("/users/follow")
+    public RedirectView createUserFollowing(long id, Principal p){
+
+
+        return new RedirectView("/users");
     }
 }

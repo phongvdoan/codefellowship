@@ -12,23 +12,6 @@ public class Post {
     long id;
 
 
-    @ManyToMany(cascade = CascadeType.REMOVE)
-    @JoinTable(
-            name="feed",
-            joinColumns = {@JoinColumn(name="user")},
-            inverseJoinColumns = {@JoinColumn(name="followed_user")}
-    )
-    public Set<Post> postsOfUsersIfollow;
-
-
-    public void addPosts(Post followedUser){
-        this.postsOfUsersIfollow.add(followedUser);
-    }
-
-    @ManyToMany(mappedBy = "postsOfUsersIfollow")
-    public Set<Post> postsIShare;
-
-
     @ManyToOne
     ApplicationUser applicationUser;
 
