@@ -11,8 +11,14 @@ main {
     height: 110vh;
 }
 
+main > div > img {
+    margin-bottom: .1em;
+    width: 15%;
+}
+
 main > p {
     margin: 1em;
+
 }
 
 main > form {
@@ -34,6 +40,7 @@ main > div > div {
     border: .5em solid gray;
     margin: 5em auto;
 }
+
 
 main > div > p {
     margin-bottom: .1em;
