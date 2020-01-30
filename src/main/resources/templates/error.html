@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>ERROR</title>
@@ -18,10 +18,7 @@
 <main>
     <p>My logic is undeniable, your request is denied.</p>
 </main>
-<footer>
-    <ul class="copyright">
-        <li>&copy; Phong Doan. All rights reserved.</li>
-    </ul>
+<footer th:insert="~{fragments/footer :: footer}">
 </footer>
 </body>
 </html>

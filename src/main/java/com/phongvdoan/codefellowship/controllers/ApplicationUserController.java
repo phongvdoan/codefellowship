@@ -53,7 +53,9 @@ public class ApplicationUserController {
     @GetMapping("/users/{id}")
     public String getHome(@PathVariable long id, Principal p, Model m) {
         if (p != null) {
-            m.addAttribute("principle", p.getName());
+            m.addAttribute("principle",p.getName());
+        } else if(p == null){
+            m.addAttribute("principle","User");
         }
         ApplicationUser applicationUser = applicationUserRepository.findById(id).get();
         m.addAttribute("username", applicationUser.getUsername());
@@ -68,7 +70,9 @@ public class ApplicationUserController {
     @GetMapping("/myprofile")
     public String getProfile(Principal p, Model m) {
         if (p != null) {
-            m.addAttribute("principle", p.getName());
+            m.addAttribute("principle",p.getName());
+        } else if(p == null){
+            m.addAttribute("principle","User");
         }
         ApplicationUser applicationUser = applicationUserRepository.findByUsername(p.getName());
         m.addAttribute("username", applicationUser.getUsername());
