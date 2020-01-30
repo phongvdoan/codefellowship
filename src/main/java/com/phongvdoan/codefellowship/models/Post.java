@@ -2,6 +2,7 @@ package com.phongvdoan.codefellowship.models;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 public class Post {
@@ -9,6 +10,24 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
+
+
+    @ManyToMany(cascade = CascadeType.REMOVE)
+    @JoinTable(
+            name="feed",
+            joinColumns = {@JoinColumn(name="user")},
+            inverseJoinColumns = {@JoinColumn(name="followed_user")}
+    )
+    public Set<Post> postsOfUsersIfollow;
+
+
+    public void addPosts(Post followedUser){
+        this.postsOfUsersIfollow.add(followedUser);
+    }
+
+    @ManyToMany(mappedBy = "postsOfUsersIfollow")
+    public Set<Post> postsIShare;
+
 
     @ManyToOne
     ApplicationUser applicationUser;
