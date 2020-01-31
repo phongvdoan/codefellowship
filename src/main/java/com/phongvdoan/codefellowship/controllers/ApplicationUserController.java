@@ -17,6 +17,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -63,12 +64,12 @@ public class ApplicationUserController {
         m.addAttribute("firstName", applicationUser.getFirstName());
         m.addAttribute("lastName", applicationUser.getLastName());
         m.addAttribute("dateOfBirth", applicationUser.getDateofBirth());
-        m.addAttribute("bio", applicationUser.getBio());
+        m.addAttribute("user", applicationUser);
 
         return "users";
     }
 
-    @GetMapping("/users")
+    @GetMapping("/userlist")
     public String getAllUsers(Principal p, Model m) {
         if (p != null) {
             m.addAttribute("principle",p.getName());
@@ -100,8 +101,20 @@ public class ApplicationUserController {
 
     @PostMapping("/users/follow")
     public RedirectView createUserFollowing(long id, Principal p){
+        ApplicationUser currentUser = applicationUserRepository.findByUsername(p.getName());
+        ApplicationUser userToBeFollowed = applicationUserRepository.findById(id).get();
+        currentUser.usersIfollow.add(userToBeFollowed);
+        applicationUserRepository.save(userToBeFollowed);
 
+        return new RedirectView("/userlist");
+    }
 
-        return new RedirectView("/users");
+    @GetMapping("/feed")
+    public String displayPostsOfThoseIFollow(Principal p, Model m){
+        m.addAttribute("principle",p.getName());
+        ApplicationUser applicationUser = applicationUserRepository.findByUsername(p.getName());
+        m.addAttribute("usersIFollow", applicationUser.usersIfollow);
+        System.out.println(Arrays.toString(applicationUser.usersIfollow.toArray()));
+        return "feed";
     }
 }

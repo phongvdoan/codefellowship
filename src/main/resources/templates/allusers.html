@@ -10,16 +10,13 @@
 </header>
 <main>
     <div th:each="user : ${users}">
-        <img src="/images/default_pic.jpeg" alt="Profile Picture">
-        <p>Name:          [[${user.firstName}]]</p>
-        <p>Last Name:     [[${user.lastName}]]</p>
-        <p>Date of Birth: [[${user.dateOfBirth}]]</p>
-        <p>Bio:           [[${user.bio}]]</p>
-        <form action="/users/follow" method="post">
-            <input type="checkbox" name="following">
-            <input type="hidden" name="id" th:value="${user.id}">
-            <button type="submit">Submit</button>
-        </form>
+        <a th:href="'/users/' + ${user.id}">
+            <img src="/images/default_pic.jpeg" alt="Profile Picture">
+            <p>Name:          [[${user.firstName}]]</p>
+            <p>Last Name:     [[${user.lastName}]]</p>
+            <p>Date of Birth: [[${user.dateofBirth}]]</p>
+            <p>Bio:           [[${user.bio}]]</p>
+        </a>
     </div>
 </main>
 <footer th:insert="~{fragments/footer :: footer}">

@@ -18,16 +18,16 @@ public class ApplicationUser implements UserDetails {
 
     @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinTable(
-            name="follow",
-            joinColumns = {@JoinColumn(name="user")},
+            name="following",
+            joinColumns = {@JoinColumn(name="userWhoFollows")},
             inverseJoinColumns = {@JoinColumn(name="followed_user")}
     )
     public Set<ApplicationUser> usersIfollow;
 
 
-    public void addPosts(ApplicationUser followedUser){
-        this.usersIfollow.add(followedUser);
-    }
+//    public void addPosts(ApplicationUser followedUser){
+//        this.usersIfollow.add(followedUser);
+//    }
 
     @ManyToMany(mappedBy = "usersIfollow")
     public Set<ApplicationUser> usersWhoFollowMe;
