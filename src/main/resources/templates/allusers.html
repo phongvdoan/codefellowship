@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Users</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header th:insert="~{fragments/header :: header}">
+</header>
+<main>
+    <div th:each="user : ${users}">
+        <a th:href="'/users/' + ${user.id}">
+            <img src="/images/default_pic.jpeg" alt="Profile Picture">
+            <p>Name:          [[${user.firstName}]]</p>
+            <p>Last Name:     [[${user.lastName}]]</p>
+            <p>Date of Birth: [[${user.dateofBirth}]]</p>
+            <p>Bio:           [[${user.bio}]]</p>
+        </a>
+    </div>
+</main>
+<footer th:insert="~{fragments/footer :: footer}">
+</footer>
+</body>
+</html>

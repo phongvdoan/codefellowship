@@ -2,6 +2,7 @@ package com.phongvdoan.codefellowship.models;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 public class Post {
@@ -9,6 +10,7 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
+
 
     @ManyToOne
     ApplicationUser applicationUser;

@@ -11,7 +11,7 @@ main {
     height: 110vh;
 }
 
-main > div > img {
+img {
     margin-bottom: .1em;
     width: 15%;
 }

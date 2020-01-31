@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<header th:fragment="header">
+    <h1>CodeFellowship. Welcome, [[${principle}]]</h1>
+    <ul>
+        <li>
+            <a href="/signup">Sign Up HERE</a>
+        </li>
+        <li>
+            <a href="/login">Login Here</a>
+        </li>
+        <li>
+            <a href="/feed">Feed of Following</a>
+        </li>
+        <li>
+            <a href="/myprofile">Your Profile</a>
+        </li>
+        <li>
+            <a href="/logout">Logout Here</a>
+        </li>
+    </ul>
+
+</header>
+</body>
+</html>

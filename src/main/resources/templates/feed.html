@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Feed</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header th:insert="~{fragments/header :: header}">
+</header>
+<main>
+    <div th:each="user : ${usersIFollow}">
+        <div th:each="post : ${user.posts}">
+            <p>Message: <span th:text="${post.message}"></span></p>
+            <p>Created At: <span th:text="${post.createdAt}"></span></p>
+            <p>By:          [[${user.firstName}]]</p>
+            <p>Body: <span th:text="${post.body}"></span></p>
+        </div>
+    </div>
+</main>
+<footer th:insert="~{fragments/footer :: footer}">
+</footer>
+</body>
+</html>

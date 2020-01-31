@@ -1,28 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>User Profile</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<header>
-    <h1>Welcome, [[${principle}]]. This is [[${username}]]'s profile</h1>
-    <ul>
-        <li>
-            <a href="/signup">Sign Up HERE</a>
-        </li>
-        <li>
-            <a href="/login">Login Here</a>
-        </li>
-        <li>
-            <a href="/myprofile">Your Profile</a>
-        </li>
-        <li>
-            <a href="/logout">Logout Here</a>
-        </li>
-    </ul>
-
+<header th:insert="~{fragments/header :: header}">
 </header>
 <main>
     <div>
@@ -30,13 +14,14 @@
     <p>Name:          [[${firstName}]]</p>
     <p>Last Name:     [[${lastName}]]</p>
     <p>Date of Birth: [[${dateOfBirth}]]</p>
-    <p>Bio:           [[${bio}]]</p>
+    <p>Bio:           [[${user.bio}]]</p>
     </div>
+    <form action="/users/follow" method="post">
+        <input type="hidden" name="id" th:value="${user.id}">
+        <button type="submit">Follow</button>
+    </form>
 </main>
-<footer>
-    <ul class="copyright">
-        <li>&copy; Phong Doan. All rights reserved.</li>
-    </ul>
+<footer th:insert="~{fragments/footer :: footer}">
 </footer>
 </body>
 </html>

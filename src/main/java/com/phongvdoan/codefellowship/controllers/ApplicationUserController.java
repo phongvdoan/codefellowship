@@ -17,6 +17,8 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Controller
 public class ApplicationUserController {
@@ -51,24 +53,40 @@ public class ApplicationUserController {
     }
 
     @GetMapping("/users/{id}")
-    public String getHome(@PathVariable long id, Principal p, Model m) {
+    public String getUser(@PathVariable long id, Principal p, Model m) {
         if (p != null) {
-            m.addAttribute("principle", p.getName());
+            m.addAttribute("principle",p.getName());
+        } else if(p == null){
+            m.addAttribute("principle","User");
         }
         ApplicationUser applicationUser = applicationUserRepository.findById(id).get();
         m.addAttribute("username", applicationUser.getUsername());
         m.addAttribute("firstName", applicationUser.getFirstName());
         m.addAttribute("lastName", applicationUser.getLastName());
         m.addAttribute("dateOfBirth", applicationUser.getDateofBirth());
-        m.addAttribute("bio", applicationUser.getBio());
+        m.addAttribute("user", applicationUser);
 
         return "users";
+    }
+
+    @GetMapping("/userlist")
+    public String getAllUsers(Principal p, Model m) {
+        if (p != null) {
+            m.addAttribute("principle",p.getName());
+        } else if(p == null){
+            m.addAttribute("principle","User");
+        }
+        List<ApplicationUser> applicationUser = applicationUserRepository.findAll();
+        m.addAttribute("users", applicationUser);
+        return "allusers";
     }
 
     @GetMapping("/myprofile")
     public String getProfile(Principal p, Model m) {
         if (p != null) {
-            m.addAttribute("principle", p.getName());
+            m.addAttribute("principle",p.getName());
+        } else if(p == null){
+            m.addAttribute("principle","User");
         }
         ApplicationUser applicationUser = applicationUserRepository.findByUsername(p.getName());
         m.addAttribute("username", applicationUser.getUsername());
@@ -79,5 +97,24 @@ public class ApplicationUserController {
         m.addAttribute("id", applicationUser.id);
         m.addAttribute("user", applicationUser);
         return "profile";
+    }
+
+    @PostMapping("/users/follow")
+    public RedirectView createUserFollowing(long id, Principal p){
+        ApplicationUser currentUser = applicationUserRepository.findByUsername(p.getName());
+        ApplicationUser userToBeFollowed = applicationUserRepository.findById(id).get();
+        currentUser.usersIfollow.add(userToBeFollowed);
+        applicationUserRepository.save(userToBeFollowed);
+
+        return new RedirectView("/userlist");
+    }
+
+    @GetMapping("/feed")
+    public String displayPostsOfThoseIFollow(Principal p, Model m){
+        m.addAttribute("principle",p.getName());
+        ApplicationUser applicationUser = applicationUserRepository.findByUsername(p.getName());
+        m.addAttribute("usersIFollow", applicationUser.usersIfollow);
+        System.out.println(Arrays.toString(applicationUser.usersIfollow.toArray()));
+        return "feed";
     }
 }
